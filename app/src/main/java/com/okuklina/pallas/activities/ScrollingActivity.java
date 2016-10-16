@@ -9,24 +9,30 @@ import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
+import com.okuklina.pallas.adapter.DictionaryAdapter;
 import com.okuklina.pallas.data.DictionariesContract;
 import com.okuklina.pallas.R;
+import com.okuklina.pallas.data.DictionaryLoader;
 
 
-public class ScrollingActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
+public class ScrollingActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener, DictionaryAdapter.OnListItemClickListener {
+    private static final String TAG = ScrollingActivity.class.getSimpleName();
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ViewPager mViewPager;
     private Toolbar mToolbar;
     private boolean mIsRefreshing;
     private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,7 @@ public class ScrollingActivity extends AppCompatActivity implements LoaderManage
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getActionBar();
 
-        android.support.v7.app.ActionBar ab = getSupportActionBar();
-        if (ab != null) ab.setTitle("");
+
 
         this.mSwipeRefreshLayout.setOnRefreshListener(this);
         this.mSwipeRefreshLayout.setColorSchemeColors(this.getResources().getIntArray(R.array.swipe_to_refresh_progress_colors));
@@ -90,16 +95,32 @@ public class ScrollingActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+        return DictionaryLoader.newAllDictionariesInstance(this);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if(data == null) {
+            Log.v(ScrollingActivity.TAG, "onLoadFinished null");
+        }
+        else {
+            Log.v(ScrollingActivity.TAG, "onLoadFinished " + data.getCount());
+        }
+        this.mAdapter = new DictionaryAdapter(this, data).setListener(this);
+        this.mAdapter.setHasStableIds(true);
+        this.mRecyclerView.setAdapter(this.mAdapter);
 
+        this.mLayoutManager = new LinearLayoutManager(this);
+        this.mRecyclerView.setLayoutManager(this.mLayoutManager);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    public void onListItemSelected(long articleId) {
 
     }
 }
