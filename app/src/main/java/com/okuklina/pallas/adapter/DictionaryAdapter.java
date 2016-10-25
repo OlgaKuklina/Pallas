@@ -2,6 +2,9 @@ package com.okuklina.pallas.adapter;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +21,8 @@ import com.okuklina.pallas.R;
 import com.okuklina.pallas.data.DictionaryLoader;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 /**
  * Created by olgakuklina on 2016-10-15.
@@ -60,9 +65,11 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         this.mCursor.moveToPosition(position);
-        holder.titleView.setBackgroundColor(this.mCursor.getInt(DictionaryLoader.Query.COLOR));
+        holder.titleView.setBackgroundColor(ContextCompat.getColor(this.mActivity, R.color.colorPrimary));
+        holder.titleView.setTextColor(ContextCompat.getColor(this.mActivity, R.color.textColorPrimaryDark));
         holder.titleView.setText(this.mCursor.getString(DictionaryLoader.Query.TITLE));
-        holder.subtitleView.setBackgroundColor(this.mCursor.getInt(DictionaryLoader.Query.COLOR));
+        holder.subtitleView.setBackgroundColor(ContextCompat.getColor(this.mActivity, R.color.colorPrimaryDark));
+        holder.subtitleView.setTextColor(ContextCompat.getColor(this.mActivity, R.color.colorPrimaryDark));
         holder.subtitleView.setText(
                 DateUtils.getRelativeTimeSpanString(
                         this.mCursor.getLong(DictionaryLoader.Query.CREATE_DATE),
@@ -71,11 +78,15 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
                         + " by "
                         + this.mCursor.getString(DictionaryLoader.Query._ID));
 
+        Log.v(TAG, "Photo_URI = " + this.mCursor.getString(DictionaryLoader.Query.PHOTO_URL) + ", position = " + position);
+
+        ColorDrawable userColor = new ColorDrawable(mCursor.getInt(DictionaryLoader.Query.COLOR));
         holder.thumbnailView.setLayoutParams(new LinearLayout.LayoutParams(this.screenWidth, (int) (this.screenWidth /2)));
         Picasso pic = Picasso.with(this.mActivity);
+        pic.setLoggingEnabled(true);
         pic.load(this.mCursor.getString(DictionaryLoader.Query.PHOTO_URL))
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .placeholder(R.color.colorPrimary)
+                .placeholder(userColor)
                 .into(holder.thumbnailView);
 
     }
@@ -102,9 +113,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.v(DictionaryAdapter.TAG, "ListItemsAdapter::onCreateViewHolder");
-
         View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-
         DictionaryAdapter.ViewHolder vh = new DictionaryAdapter.ViewHolder(view);
 
         return vh;

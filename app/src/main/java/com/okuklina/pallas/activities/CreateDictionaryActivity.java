@@ -3,12 +3,14 @@ package com.okuklina.pallas.activities;
 import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ import com.android.colorpicker.ColorPickerDialog;
 import com.okuklina.pallas.data.DictionariesContract;
 import com.okuklina.pallas.R;
 
+import java.io.File;
+
 import static android.provider.CalendarContract.CalendarCache.URI;
 
 /**
@@ -24,6 +28,7 @@ import static android.provider.CalendarContract.CalendarCache.URI;
  */
 
 public class CreateDictionaryActivity extends AppCompatActivity {
+    private static final String TAG = CreateDictionaryActivity.class.getSimpleName();
     private ColorPickerDialog colorPickerDialog;
     private static final int REQUEST_CODE = 2;
     private Uri uri;
@@ -69,7 +74,9 @@ public class CreateDictionaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ContentValues values = new ContentValues();
-                values.put(DictionariesContract.Items.TITLE, dictTitle.getFreezesText());
+                values.put(DictionariesContract.Items.TITLE, dictTitle.getText().toString());
+                Log.v(CreateDictionaryActivity.TAG, "setOnClickListener " + dictTitle.getText().toString());
+
                 values.put(DictionariesContract.Items.COLOR, colorPickerDialog.getSelectedColor());
                 if(uri!=null) {
                     values.put(DictionariesContract.Items.PHOTO_URL, uri.toString());
@@ -90,6 +97,7 @@ public class CreateDictionaryActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE) {
            if(resultCode == RESULT_OK) {
                 uri = data.getData();
+              // getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
            }
         }
     }

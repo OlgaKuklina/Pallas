@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#006699</color>
-    <color name="colorPrimaryDark">#3399CC</color>
+    <color name="colorPrimaryDark">#065176</color>
+    <color name="colorSecondary">#3399CC</color>
     <color name="colorAccent">#F6402C</color>
+
+    <color name="textColorPrimary">#f8fafa</color>
+    <color name="textColorPrimaryDark">#050505</color>
+    <color name="textColorAccent">#8e8d8c</color>
 
     <array name="color_picker_array">
         <item>#F6402C</item>
