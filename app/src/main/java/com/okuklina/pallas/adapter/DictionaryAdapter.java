@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.okuklina.pallas.R;
@@ -81,7 +82,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         Log.v(TAG, "Photo_URI = " + this.mCursor.getString(DictionaryLoader.Query.PHOTO_URL) + ", position = " + position);
 
         ColorDrawable userColor = new ColorDrawable(mCursor.getInt(DictionaryLoader.Query.COLOR));
-        holder.thumbnailView.setLayoutParams(new LinearLayout.LayoutParams(this.screenWidth, (int) (this.screenWidth /2)));
+        holder.thumbnailView.setLayoutParams(new LinearLayout.LayoutParams((int)(this.screenWidth*0.84), (int) (this.screenWidth /2)));
         Picasso pic = Picasso.with(this.mActivity);
         pic.setLoggingEnabled(true);
         pic.load(this.mCursor.getString(DictionaryLoader.Query.PHOTO_URL))

@@ -119,11 +119,10 @@
                     android:textColor="@color/textColorAccent"
                     android:textSize="@dimen/primary_text_size" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/color_button"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -140,11 +139,10 @@
                     android:textColor="@color/textColorAccent"
                     android:textSize="@dimen/primary_text_size" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/image_button"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="40dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -161,11 +159,10 @@
                     android:textColor="@color/textColorAccent"
                     android:textSize="@dimen/primary_text_size" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/content_type_button"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <Button
