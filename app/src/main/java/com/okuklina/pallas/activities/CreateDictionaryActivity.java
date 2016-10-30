@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.okuklina.pallas.data.DictionariesContract;
@@ -52,14 +53,14 @@ public class CreateDictionaryActivity extends AppCompatActivity {
                 R.string.title, colors, colors[3], 3, 2);
 
         final EditText dictTitle = (EditText) findViewById(R.id.dictionary_title);
-        Button colorPickerButton = (Button) findViewById(R.id.color_button);
+        ImageView colorPickerButton = (ImageView) findViewById(R.id.color_button);
         colorPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorPickerDialog.show(getFragmentManager(), "colorpicker");
             }
         });
-        Button ImagePickerButton = (Button) findViewById(R.id.image_button);
+        ImageView ImagePickerButton = (ImageView) findViewById(R.id.image_button);
         ImagePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +70,7 @@ public class CreateDictionaryActivity extends AppCompatActivity {
             }
         });
 
-        Button okButton = (Button) findViewById(R.id.ok_button);
+        Button okButton = (Button) findViewById(R.id.create_button);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

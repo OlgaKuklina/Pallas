@@ -2,12 +2,14 @@
 <resources>
     <color name="colorPrimary">#006699</color>
     <color name="colorPrimaryDark">#065176</color>
-    <color name="colorSecondary">#3399CC</color>
+    <color name="colorSecondary">#09A3EA</color>
     <color name="colorAccent">#F6402C</color>
 
-    <color name="textColorPrimary">#f8fafa</color>
+    <color name="textColorPrimary">#8e8d8c</color>
     <color name="textColorPrimaryDark">#050505</color>
-    <color name="textColorAccent">#8e8d8c</color>
+    <color name="textColorSecondary">#FFFFFF</color>
+    <color name="textColorAccent">#FF065176</color>
+    <color name="textAccent">#f76904</color>
 
     <array name="color_picker_array">
         <item>#F6402C</item>
@@ -34,7 +36,7 @@
 
     </array>
     <array name="swipe_to_refresh_progress_colors">
-        <item>#f76904</item>
+        <item>#F6402C</item>
         <item>#09A3EA</item>
     </array>
 </resources>

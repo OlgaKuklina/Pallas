@@ -12,5 +12,7 @@
     <dimen name="tb_elevation">10dp</dimen>
 
 
+    <dimen name="primary_text_size">18dp</dimen>
+
 
 </resources>

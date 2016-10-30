@@ -1,35 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:fitsSystemWindows="true"
+    tools:context="com.okuklina.pallas.activities.ScrollingActivity">
 
-    <EditText
-        android:text="Dictionary Name"
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dictionary_title"
-        android:layout_weight="0.10" />
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <TextView
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/b_margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:src="@drawable/pallas_back" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:id="@+id/dictionary" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <Button
-        android:text="Color Picker"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/color_button" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <Button
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_button" />
+            <TextView
+                android:id="@+id/learning_set"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="New Learning set"
+                android:textColor="@color/textColorAccent"
+                android:textSize="@dimen/primary_text_size"
+                android:textStyle="bold" />
 
-    <Button
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/ok_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/dictionary_Name"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="Title"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="@dimen/primary_text_size" />
+
+                <EditText
+                    android:id="@+id/dictionary_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/primary_text_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Description"
+                android:textColor="@color/textColorAccent"
+                android:textSize="@dimen/primary_text_size" />
+
+            <EditText
+                android:id="@+id/dictionary_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/dictionary"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <TextView
+                    android:id="@+id/dic_color"
+                    android:layout_width="280dp"
+                    android:layout_height="50dp"
+                    android:text="Color"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="@dimen/primary_text_size" />
+
+                <ImageView
+                    android:id="@+id/color_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <TextView
+                    android:id="@+id/picture_id"
+                    android:layout_width="280dp"
+                    android:layout_height="50dp"
+                    android:text="Image gallery"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="@dimen/primary_text_size" />
+
+                <ImageView
+                    android:id="@+id/image_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <TextView
+                    android:id="@+id/content_type"
+                    android:layout_width="280dp"
+                    android:layout_height="50dp"
+                    android:text="Image URL"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="@dimen/primary_text_size" />
+
+                <ImageView
+                    android:id="@+id/content_type_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:textColor="@color/textColorSecondary"
+                android:text="create" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
