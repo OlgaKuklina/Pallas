@@ -1,6 +1,7 @@
 package com.okuklina.pallas.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,19 +42,15 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
 
     public interface OnListItemClickListener {
         void onListItemSelected(long articleId);
-
-        DictionaryAdapter.OnListItemClickListener listner = new DictionaryAdapter.OnListItemClickListener() {
-            @Override public void onListItemSelected(long itemId) {
-            }
-        };
     }
+
 
     public DictionaryAdapter setListener(@NonNull DictionaryAdapter.OnListItemClickListener listener) {
         this.mListener = listener;
         return this;
     }
 
-    private DictionaryAdapter.OnListItemClickListener mListener = DictionaryAdapter.OnListItemClickListener.listner;
+    private DictionaryAdapter.OnListItemClickListener mListener;
     private final Activity mActivity;
     private final Cursor mCursor;
 

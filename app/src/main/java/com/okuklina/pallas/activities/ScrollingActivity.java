@@ -121,7 +121,9 @@ public class ScrollingActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public void onListItemSelected(long articleId) {
-
+        Intent intent = new Intent(this, ArticleContentActivity.class);
+        intent.putExtra("article_id", articleId);
+        startActivity(intent);
     }
 }
 

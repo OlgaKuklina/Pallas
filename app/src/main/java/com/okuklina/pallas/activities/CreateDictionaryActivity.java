@@ -87,7 +87,6 @@ public class CreateDictionaryActivity extends AppCompatActivity {
             }
         });
 
-
         ImageButton UriPickerButton = (ImageButton) findViewById(R.id.content_type_button);
         UriPickerButton.getBackground().setTint(getResources().getColor(R.color.colorPrimary));
         UriPickerButton.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +128,6 @@ public class CreateDictionaryActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE) {
            if(resultCode == RESULT_OK) {
                 uri = data.getData();
-              // getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
            }
         }
     }

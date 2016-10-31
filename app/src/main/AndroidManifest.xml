@@ -31,7 +31,19 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="vnd.android.cursor.item/vnd.com.example.xyzreader.items" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.com.okuklina.pallas.items" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.okuklina.pallas.activities.ArticleContentActivity"
+            android:parentActivityName="com.okuklina.pallas.activities.ScrollingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.com.okuklina.pallas.items" />
             </intent-filter>
         </activity>
         <provider android:name=".data.ItemsProvider"
